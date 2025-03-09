@@ -1,11 +1,12 @@
-import { Dispatch, FormEvent, useState } from "react"
+import { Dispatch, FormEvent, useState, useEffect } from "react"
 import { v4 as uuidv4 } from 'uuid'
 import type { Activity } from "../types"
 import { categories } from "../data/categories"
-import { ActivityActions } from "../reducers/activity-reducer"
+import { ActivityActions, ActivityState } from "../reducers/activity-reducer"
 
 type FormProps = {
-    dispatch: Dispatch<ActivityActions>
+    dispatch: Dispatch<ActivityActions>,
+    state: ActivityState
 }
 
 const InitialState : Activity = {
@@ -16,9 +17,16 @@ const InitialState : Activity = {
 }
 
 
-export default function Form({dispatch} : FormProps) {
+export default function Form({dispatch, state} : FormProps) {
 
     const [activity,setActivity] = useState<Activity>(InitialState)
+
+    useEffect(() => {
+        if(state.activeId){
+            console.log("hay algo en activId")
+        }
+    },[state.activeId])
+
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement> |React.ChangeEvent<HTMLInputElement>) => {
         const isNumberField = ['category', 'calories'].includes(e.target.id)
