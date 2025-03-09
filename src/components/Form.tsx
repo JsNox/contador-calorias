@@ -48,6 +48,7 @@ export default function Form({dispatch} : FormProps) {
 
 
     return (
+        <div className="max-w-4xl mx-auto">
         <form
             className="space-y-5 bg-white shadow p-10 rounded-lg"
             onSubmit={handleSubmit}
@@ -102,5 +103,6 @@ export default function Form({dispatch} : FormProps) {
             />
 
         </form>
+        </div>
     )
 }
