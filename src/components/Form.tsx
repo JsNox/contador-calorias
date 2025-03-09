@@ -40,7 +40,10 @@ export default function Form({dispatch} : FormProps) {
         e.preventDefault()
         dispatch({ type: "save-activity", payload: {newActivity: activity}})
 
-        setActivity(InitialState)
+        setActivity({
+            ...InitialState,
+            id: uuidv4()
+        })
     }
 
 
